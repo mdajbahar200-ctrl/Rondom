@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Catch The Box - Pro</title>
+<style>
+  body {
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #1a1a1a;
+    color: white;
+    overflow: hidden; /* স্ক্রলবার বন্ধ রাখার জন্য */
+    margin: 0;
+  }
+  
+  h1 { margin-top: 20px; }
+
+  #box {
+    width: 60px;
+    height: 60px;
+    background: #ff4757;
+    position: absolute;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 71, 87, 0.5);
+    transition: all 0.2s ease-out; /* বক্সটি মসৃণভাবে নড়বে */
+  }
+
+  #box:hover {
+    background: #ff6b81;
+    transform: scale(1.1);
+  }
+
+  #box:active {
+    transform: scale(0.9);
+  }
+</style>
+</head>
+<body>
+
+<h1>Catch The Box</h1>
+<p>Score: <span id="score" style="font-size: 24px; font-weight: bold; color: #2ed573;">0</span></p>
+
+<div id="box"></div>
+
+<script>
+let score = 0;
+const box = document.getElementById("box");
+
+function moveBox() {
+  // বক্সটি যেন স্ক্রিনের বাইরে না যায় এবং হেডারের সাথে ধাক্কা না খায়
+  const x = Math.random() * (window.innerWidth - 70);
+  const y = 100 + Math.random() * (window.innerHeight - 170); 
+  
+  box.style.left = x + "px";
+  box.style.top = y + "px";
+}
+
+box.onclick = () => {
+  score++;
+  document.getElementById("score").innerText = score;
+  moveBox();
+};
+
+// গেম শুরু করার জন্য প্রথম মুভমেন্ট
+moveBox();
+</script>
+
+</body>
+</html>
+
